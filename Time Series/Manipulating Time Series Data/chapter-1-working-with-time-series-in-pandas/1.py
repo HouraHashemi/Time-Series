@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 google = pd.read_csv('./stock_data/google.csv', parse_dates=['Date'], index_col='Date')
 print(google.info())
 print(google)
-print("----------------------")
+#------------------------
 
 
 # One period to the future to comapre data
@@ -22,9 +22,7 @@ print(google)
 
 google['lagged'] = google.Close.shift(periods=-1)
 print(google)
-print("----------------------")
-
-
+#------------------------
 # percent change xt / xt - 1 | financial return
 # each cloumn value of change would be Close/shifted
 # simple example:
@@ -43,8 +41,7 @@ print("----------------------")
 
 google['change'] = google.Close.div(google.shifted)
 print(google)
-
-print("----------------------")
+#------------------------
 # reletive change in percentage of prices
 # simple example:
 # data = {
@@ -63,14 +60,14 @@ print("----------------------")
 
 google['return'] = google.change.sub(1).mul(100)
 print(google)
+#------------------------
 
 
-print("----------------------")
 # diff x - (x-1) last time stock trated
 google['diff'] = google.Close.diff()
 print(google)
+#------------------------
 
 
-print("----------------------")
 google['easy_method_of_return'] = google.Close.pct_change(periods=1).mul(100)
 print(google[['Close', 'shifted', 'lagged', 'change', 'return', 'diff', 'easy_method_of_return']].head(5))
